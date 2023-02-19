@@ -22,14 +22,14 @@ public class DriverManager {
 
     public static void initializeDriver(String deviceID) throws Exception {
         AppiumDriver driver;
-        String userName = "gkhanit_2Z7js1";
-        String accessKey = "6jBRuJ8Zusz173z9yEny";
-        //String userName = System.getenv("BROWSERSTACK_USERNAME");
-        //String accessKey = System.getenv("BROWSERSTACK_ACCESS_KEY");
+        //String userName = "gkhanit_2Z7js1";
+        //String accessKey = "6jBRuJ8Zusz173z9yEny";
+        String userName = System.getenv("BROWSERSTACK_USERNAME");
+        String accessKey = System.getenv("BROWSERSTACK_ACCESS_KEY");
     //    String browserstackLocal = System.getenv("BROWSERSTACK_LOCAL");
-        //String buildName = System.getenv("BROWSERSTACK_BUILD_NAME");
+        String buildName = System.getenv("BROWSERSTACK_BUILD_NAME");
     //    String browserstackLocalIdentifier = System.getenv("BROWSERSTACK_LOCAL_IDENTIFIER");
-        //String app = System.getenv("BROWSERSTACK_APP_ID");
+        String app = System.getenv("BROWSERSTACK_APP_ID");
 
         JSONObject deviceObj = new JSONObject(JsonParser.parse("Devices.json").getJSONObject(deviceID).toString());
         DesiredCapabilities caps = new DesiredCapabilities();
@@ -37,9 +37,10 @@ public class DriverManager {
         caps.setCapability("device", deviceObj.getString("device"));
         caps.setCapability("os_version", deviceObj.getString("os_version"));
         caps.setCapability("project", "My First Project");
-        caps.setCapability("build", "buildName");
+        caps.setCapability("build", buildName);
         caps.setCapability("name", "Bstack-[Java] Sample Test");
-        caps.setCapability("app", deviceObj.getString("app_url"));
+        caps.setCapability("app", app);
+        //caps.setCapability("app", deviceObj.getString("app_url"));
 
         URL url = new URL("https://"+userName+":"+accessKey+"@hub-cloud.browserstack.com/wd/hub");
 
