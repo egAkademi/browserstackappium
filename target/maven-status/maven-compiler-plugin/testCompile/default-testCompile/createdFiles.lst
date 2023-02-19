@@ -1,0 +1,10 @@
+com/qa/tests/LoginTests.class
+com/qa/tests/ProductTests.class
+com/qa/utils/StringParser.class
+com/qa/utils/JsonParser.class
+com/qa/pages/LoginPage.class
+com/qa/base/BasePage.class
+com/qa/base/BaseTest.class
+com/qa/pages/ProductsPage.class
+com/qa/base/DriverManager.class
+com/qa/pages/ProductDetailsPage.class
