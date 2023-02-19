@@ -1,11 +1,13 @@
 package com.qa.base;
 
+import com.qa.utils.HttpHelper;
 import com.qa.utils.JsonParser;
 import io.appium.java_client.AppiumDriver;
 import io.appium.java_client.android.AndroidDriver;
 import io.appium.java_client.ios.IOSDriver;
 import org.json.JSONObject;
 import org.openqa.selenium.remote.DesiredCapabilities;
+import org.testng.reporters.HtmlHelper;
 
 import java.net.URL;
 
@@ -31,6 +33,8 @@ public class DriverManager {
     //    String browserstackLocalIdentifier = System.getenv("BROWSERSTACK_LOCAL_IDENTIFIER");
         String app = System.getenv("BROWSERSTACK_APP_ID");
 
+        JSONObject appUrlObj = new JSONObject(HttpHelper.uploadApp("/Users/gokhansit/Downloads/Android.SauceLabs.Mobile.Sample.app.2.7.1.apk"));
+
         JSONObject deviceObj = new JSONObject(JsonParser.parse("Devices.json").getJSONObject(deviceID).toString());
         DesiredCapabilities caps = new DesiredCapabilities();
 
@@ -39,8 +43,9 @@ public class DriverManager {
         caps.setCapability("project", "My First Project");
         caps.setCapability("build", buildName);
         caps.setCapability("name", "Bstack-[Java] Sample Test");
-        caps.setCapability("app", app);
-        //caps.setCapability("app", deviceObj.getString("app_url"));
+        //caps.setCapability("app", appUrlObj.getString("app_url"));
+        //caps.setCapability("app", app);
+        caps.setCapability("app", deviceObj.getString(app));
 
         URL url = new URL("https://"+userName+":"+accessKey+"@hub-cloud.browserstack.com/wd/hub");
 
