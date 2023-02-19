@@ -44,8 +44,8 @@ public class DriverManager {
         caps.setCapability("build", buildName);
         caps.setCapability("name", "Bstack-[Java] Sample Test");
         //caps.setCapability("app", appUrlObj.getString("app_url"));
-        //caps.setCapability("app", app);
-        caps.setCapability("app", deviceObj.getString(app));
+        caps.setCapability("app", app);
+        //caps.setCapability("app", deviceObj.getString("app_url"));
 
         URL url = new URL("https://"+userName+":"+accessKey+"@hub-cloud.browserstack.com/wd/hub");
 
